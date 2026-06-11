@@ -31,8 +31,8 @@
     backdrop-filter: blur(16px);
     border-bottom: 1px solid var(--hairline);
   }
-  .nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 26px; color: var(--black); letter-spacing: 1px; text-decoration: none; }
-  .nav-logo span { color: var(--orange); }
+  .nav-logo { height: 42px; display: flex; align-items: center; text-decoration: none; }
+  .nav-logo img { height: 42px; width: auto; object-fit: contain; }
   .nav-links { display: flex; gap: 40px; list-style: none; }
   .nav-links a { font-family: 'Bebas Neue', sans-serif; font-size: 14px; letter-spacing: 2.5px; color: var(--mid); text-decoration: none; transition: color 0.2s; }
   .nav-links a:hover { color: var(--teal); }
@@ -50,8 +50,7 @@
       linear-gradient(135deg, #F8F7F4 0%, #F2F0EC 30%, #EEF0EE 60%, #F4F3F0 100%);
   }
   .hero-bg::before {
-    content: '';
-    position: absolute; inset: 0;
+    content: ''; position: absolute; inset: 0;
     background-image:
       linear-gradient(78deg, transparent 48%, rgba(180,185,182,0.18) 48.5%, transparent 49%),
       linear-gradient(142deg, transparent 35%, rgba(170,175,172,0.12) 35.5%, transparent 36%),
@@ -60,8 +59,7 @@
       linear-gradient(55deg, transparent 72%, rgba(185,182,178,0.13) 72.5%, transparent 73%);
   }
   .hero-bg::after {
-    content: '';
-    position: absolute; inset: 0;
+    content: ''; position: absolute; inset: 0;
     background: linear-gradient(180deg, rgba(250,250,248,0) 50%, rgba(250,250,248,0.85) 100%);
   }
   .hero-content { position: relative; z-index: 2; max-width: 580px; }
@@ -110,20 +108,13 @@
   .stat-n span { color: var(--orange); }
   .stat-l { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--mid); margin-top: 3px; }
 
-  .marble-visual { height: 520px; position: relative; overflow: hidden; background: linear-gradient(135deg, #F0EEEA 0%, #E8E5E0 40%, #EDEAE6 70%, #F2F0EC 100%); }
-  .marble-visual::before {
-    content: ''; position: absolute; inset: 0;
-    background-image:
-      linear-gradient(72deg, transparent 44%, rgba(165,170,167,0.2) 44.5%, rgba(158,163,160,0.08) 45.5%, transparent 46%),
-      linear-gradient(148deg, transparent 30%, rgba(170,168,164,0.15) 30.5%, transparent 31%),
-      linear-gradient(22deg, transparent 58%, rgba(175,172,168,0.18) 58.5%, transparent 59%),
-      linear-gradient(162deg, transparent 20%, rgba(168,165,161,0.12) 20.5%, transparent 21%),
-      linear-gradient(50deg, transparent 68%, rgba(172,169,165,0.16) 68.5%, transparent 69%),
-      linear-gradient(105deg, transparent 38%, rgba(160,165,162,0.1) 38.5%, transparent 39%);
+  .architect-photo {
+    width: 100%; height: 520px;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    border-bottom: 4px solid var(--teal);
   }
-  .marble-visual-label { position: absolute; bottom: 36px; left: 36px; font-family: 'Bebas Neue', sans-serif; font-size: 56px; color: var(--black); letter-spacing: 2px; line-height: 1; }
-  .marble-visual-label span { color: var(--orange); }
-  .marble-teal-bar { position: absolute; bottom: 0; left: 0; right: 0; height: 4px; background: var(--teal); }
 
   .skills-sec { background: var(--black); }
   .skills-sec .sec-eye span { color: var(--tealhi); }
@@ -146,8 +137,7 @@
 
   .teal-bar { height: 2px; background: var(--teal); }
   footer { background: var(--black); padding: 36px 52px; display: flex; align-items: center; justify-content: space-between; }
-  .f-logo { font-family: 'Bebas Neue', sans-serif; font-size: 20px; color: rgba(248,246,242,0.4); letter-spacing: 1px; }
-  .f-logo span { color: var(--orange); }
+  .f-logo img { height: 36px; width: auto; opacity: 0.6; }
   .f-copy { font-size: 11px; color: rgba(248,246,242,0.25); letter-spacing: 1.5px; }
   .divider { height: 1px; background: var(--hairline); margin: 0 52px; }
 
@@ -159,7 +149,7 @@
     .hero-content { max-width: 100%; }
     section { padding: 64px 24px; }
     .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 40px; }
-    .marble-visual { height: 280px; }
+    .architect-photo { height: 320px; }
     .divider { margin: 0 24px; }
     footer { padding: 28px 24px; flex-direction: column; gap: 10px; text-align: center; }
   }
@@ -168,7 +158,7 @@
 <body>
 
 <nav>
-  <a href="#" class="nav-logo">B<span>++</span></a>
+  <a href="#" class="nav-logo"><img src="mascot.png" alt="B++" /></a>
   <ul class="nav-links">
     <li><a href="#work">WORK</a></li>
     <li><a href="#about">ABOUT</a></li>
@@ -183,7 +173,7 @@
     <div class="eyebrow"><div class="hex"></div><span>BEE.BUILD() — ATLANTA, GA</span></div>
     <h1 class="hero-title">BRANDON<br>MONT<span>FORD</span></h1>
     <div class="hero-rule"></div>
-    <p class="hero-sub">Mobile engineer building assistive technology, original IP, and community-focused apps. Shipped on the App Store. Built for people.</p>
+    <p class="hero-sub">Mobile engineer from Atlanta, GA with a passion for building apps that matter. Assistive technology, health tools, speech assistance, autonomous AI agents, and games.</p>
     <div class="hero-cta">
       <a href="#work" class="btn-p">VIEW WORK</a>
       <a href="#contact" class="btn-g">GET IN TOUCH</a>
@@ -223,7 +213,7 @@
       <div class="card-badge" style="background:#EBF5F3;color:#0A7C6E;"><div class="bdot" style="background:#0A7C6E;"></div>SHIPPED</div>
       <div class="card-name">VOICEBRIDGE</div>
       <div class="card-plat">iOS · React Native · Expo</div>
-      <div class="card-desc">AAC communication app built for a family member. Multi-user profiles, caregiver PIN, scene boards, symbol library. Live on the App Store.</div>
+      <div class="card-desc">AAC communication app built for a family member with a developmental condition. Multi-user profiles, caregiver PIN, scene boards, and a full symbol library.</div>
     </div>
     <div class="app-card">
       <div class="card-bar" style="background:#0A7C6E;"></div>
@@ -231,7 +221,7 @@
       <div class="card-badge" style="background:#EBF5F3;color:#0A7C6E;"><div class="bdot" style="background:#0A7C6E;"></div>SHIPPED</div>
       <div class="card-name">ROUTERUNNER</div>
       <div class="card-plat">iOS · SwiftUI</div>
-      <div class="card-desc">1v1 WR vs CB football arcade game. Canvas-rendered field, career mode, 10-week season, CoreHaptics, CB trash talk. Live on the App Store.</div>
+      <div class="card-desc">1v1 WR vs CB football arcade game. Canvas-rendered field, career mode, 10-week season, CoreHaptics, and CB trash talk. Live on the App Store.</div>
     </div>
     <div class="app-card">
       <div class="card-bar" style="background:#0A7C6E;"></div>
@@ -239,7 +229,7 @@
       <div class="card-badge" style="background:#EBF5F3;color:#0A7C6E;"><div class="bdot" style="background:#0A7C6E;"></div>SHIPPED</div>
       <div class="card-name">MIRACLE LEAGUE</div>
       <div class="card-plat">iOS · React Native · Expo</div>
-      <div class="card-desc">Community app for the Miracle League of South Fulton adaptive baseball league. Built from years of volunteering. Schedules, news, roster.</div>
+      <div class="card-desc">Community app for the Miracle League of South Fulton adaptive baseball league. Built from years of hands-on volunteering. Schedules, news, and roster.</div>
     </div>
     <div class="app-card">
       <div class="card-bar" style="background:#F4651A;"></div>
@@ -247,7 +237,7 @@
       <div class="card-badge" style="background:#FFF2EB;color:#F4651A;"><div class="bdot" style="background:#F4651A;"></div>TESTFLIGHT</div>
       <div class="card-name">FITGRADE</div>
       <div class="card-plat">iOS · React Native · Firebase</div>
-      <div class="card-desc">B2B fitness SaaS for trainers and athletes. Role-based access, 3D body hologram, AI plan generation via Claude API, join codes, audit log.</div>
+      <div class="card-desc">B2B fitness platform for coaches and athletes. Role-based access, 3D body hologram health grading, AI plan generation, join codes, and audit log.</div>
     </div>
     <div class="app-card">
       <div class="card-bar" style="background:#0A7C6E;"></div>
@@ -255,7 +245,7 @@
       <div class="card-badge" style="background:#EBF5F3;color:#0A7C6E;"><div class="bdot" style="background:#0A7C6E;"></div>SHIPPED</div>
       <div class="card-name">B++ DEVBOOK</div>
       <div class="card-plat">iOS · React Native · Expo</div>
-      <div class="card-desc">Personal dev notebook. Track shipped apps, log updates, capture ideas on the fly. Marble UI, Bebas Neue, Ferrari intentional design.</div>
+      <div class="card-desc">Personal dev notebook for mobile engineers. Track apps, log updates, and capture ideas on the fly. No account needed, everything stays local.</div>
     </div>
     <div class="app-card">
       <div class="card-bar" style="background:#909088;"></div>
@@ -263,7 +253,7 @@
       <div class="card-badge" style="background:#F0EFEB;color:#909088;"><div class="bdot" style="background:#909088;"></div>IN DEV</div>
       <div class="card-name">HB KING</div>
       <div class="card-plat">iOS · React Native · Three.js</div>
-      <div class="card-desc">Open world conquest game. Play as Honey Badger King — a polar bear mech guardian — reclaiming 12 hex territories. Berserker rage system.</div>
+      <div class="card-desc">Open world conquest game featuring Honey Badger King, a polar bear mech guardian reclaiming 12 hex territories. Full berserker rage system and 3D gameplay.</div>
     </div>
   </div>
 </section>
@@ -275,9 +265,9 @@
     <div>
       <div class="sec-eye"><div class="hex"></div><span>ABOUT</span></div>
       <h2 class="sec-title">THE ARCHITECT</h2>
-      <p class="about-copy">Recent graduate from Concordia University Chicago — dual Bachelor's in CS and Communications. Dean's List. Best Capstone Award. Top 10 nationally in an IEEE competition. Inaugural Honor Council member.</p>
-      <p class="about-copy">Former Division III student-athlete in football and track. The same discipline that built me on the field drives every line of code I write.</p>
-      <p class="about-copy">I build assistive technology because it's personal — VoiceBridge was built for a family member. I build community apps because they matter — Miracle League grew from years of volunteering with adaptive baseball. I build games because I love this craft.</p>
+      <p class="about-copy">Brandon Montford is a 21-year-old mobile engineer from Atlanta, GA with a passion for building apps that make a real difference. Recent graduate of Concordia University Chicago with a dual Bachelor's in Computer Science and Communications. Dean's List, Best Capstone Award, top 10 nationally in an IEEE competition, and inaugural Honor Council member.</p>
+      <p class="about-copy">Former Division III student-athlete in football and track. That same discipline carries into every build.</p>
+      <p class="about-copy">The focus is on apps that actually help people. Assistive technology, health tools, speech assistance, autonomous AI agents, and games. VoiceBridge was built for a family member. Miracle League grew from years of volunteering with an adaptive baseball league. The range is the point.</p>
       <div class="stats">
         <div class="stat"><div class="stat-n">8<span>+</span></div><div class="stat-l">Apps Built</div></div>
         <div class="stat"><div class="stat-n">3</div><div class="stat-l">App Store Live</div></div>
@@ -286,10 +276,7 @@
       </div>
     </div>
     <div>
-      <div class="marble-visual">
-        <div class="marble-visual-label">B<span>++</span><br>STUDIO</div>
-        <div class="marble-teal-bar"></div>
-      </div>
+      <img src="architect.png" alt="Brandon Montford" class="architect-photo" />
     </div>
   </div>
 </section>
@@ -320,7 +307,7 @@
     <div>
       <div class="sec-eye"><div class="hex"></div><span>CONTACT</span></div>
       <h2 class="contact-title">LET'S<br>BUILD<br>SOME<span>THING</span></h2>
-      <p class="contact-body">Open to full-time mobile engineering roles. Available immediately. Willing to relocate anywhere. Especially interested in assistive technology, accessibility engineering, and mission-driven teams.</p>
+      <p class="contact-body">Open to full-time mobile engineering roles. Available immediately and willing to relocate. Especially drawn to assistive technology, accessibility engineering, and teams building things that matter.</p>
       <a href="mailto:groupfire123@gmail.com" class="btn-p" style="display:inline-block;">SEND A MESSAGE</a>
     </div>
     <div class="contact-links">
@@ -342,7 +329,7 @@
 
 <div class="teal-bar"></div>
 <footer>
-  <div class="f-logo">B<span>++</span></div>
+  <div class="f-logo"><img src="mascot.png" alt="B++" /></div>
   <div class="f-copy">© 2026 BRANDON MONTFORD · BEE.BUILD()</div>
 </footer>
 

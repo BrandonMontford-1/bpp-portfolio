@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>FitGrade — B++ Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --teal:    #0A7C6E;
+    --tealhi:  #0D9E8D;
+    --orange:  #F4651A;
+    --black:   #0D0D0B;
+    --charcoal:#2C2C2A;
+    --mid:     #8A8A82;
+    --hairline:#E4E0D8;
+    --bg:      #FAFAF8;
+    --card:    #FFFFFF;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--charcoal); overflow-x: hidden; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 52px; height: 62px;
+    background: rgba(250,250,248,0.94);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--hairline);
+  }
+  .nav-logo { height: 42px; display: flex; align-items: center; text-decoration: none; }
+  .nav-logo img { height: 42px; width: auto; object-fit: contain; }
+  .nav-back {
+    font-family: 'Bebas Neue', sans-serif; font-size: 14px; letter-spacing: 2px;
+    color: var(--mid); text-decoration: none; display: flex; align-items: center; gap: 8px;
+    transition: color 0.2s;
+  }
+  .nav-back:hover { color: var(--teal); }
+  .nav-back::before { content: '←'; font-size: 16px; }
+
+  /* HERO */
+  .hero {
+    min-height: 60vh; padding: 120px 52px 80px;
+    position: relative; overflow: hidden;
+    display: flex; align-items: flex-end;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, #0A0E1A 0%, #0D1628 40%, #111E35 100%);
+  }
+  .hero-glow {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 60% 50%, rgba(10,124,110,0.15) 0%, transparent 60%),
+                radial-gradient(ellipse at 30% 80%, rgba(244,101,26,0.08) 0%, transparent 50%);
+  }
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image: linear-gradient(rgba(10,124,110,0.05) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(10,124,110,0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+  .hero-content { position: relative; z-index: 2; max-width: 700px; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: 'Bebas Neue', sans-serif; font-size: 11px; letter-spacing: 3px;
+    color: var(--orange); background: rgba(244,101,26,0.1);
+    border: 1px solid rgba(244,101,26,0.3);
+    padding: 6px 14px; border-radius: 2px; margin-bottom: 24px;
+  }
+  .hero-logo {
+    width: 72px; height: 72px; border-radius: 16px;
+    object-fit: cover; margin-bottom: 24px;
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(64px, 10vw, 120px);
+    line-height: 0.9; color: #F8F6F2; letter-spacing: 2px;
+    margin-bottom: 20px;
+  }
+  .hero-title span { color: var(--teal); }
+  .hero-sub {
+    font-size: 18px; font-weight: 300; color: rgba(248,246,242,0.6);
+    line-height: 1.65; max-width: 520px; margin-bottom: 40px;
+  }
+  .hero-tags { display: flex; gap: 10px; flex-wrap: wrap; }
+  .tag {
+    font-family: 'Bebas Neue', sans-serif; font-size: 11px; letter-spacing: 2px;
+    color: rgba(248,246,242,0.5); background: rgba(248,246,242,0.05);
+    border: 1px solid rgba(248,246,242,0.1);
+    padding: 6px 14px; border-radius: 2px;
+  }
+
+  /* SECTIONS */
+  .section { padding: 96px 52px; border-top: 1px solid var(--hairline); }
+  .section-dark { background: var(--black); border-top: none; }
+  .sec-eye { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+  .hex { width: 7px; height: 7px; background: var(--orange); transform: rotate(45deg); flex-shrink: 0; }
+  .hex-teal { background: var(--teal); }
+  .sec-eye span { font-family: 'Bebas Neue', sans-serif; font-size: 12px; letter-spacing: 4px; color: var(--teal); }
+  .sec-eye-dark span { color: var(--tealhi); }
+  .sec-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(36px, 5vw, 56px); color: var(--black); letter-spacing: 2px; line-height: 1; margin-bottom: 48px; }
+  .sec-title-light { color: #F8F6F2; }
+
+  /* WHY */
+  .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+  .why-copy { font-size: 17px; font-weight: 300; line-height: 1.85; color: var(--charcoal); }
+  .why-copy p { margin-bottom: 24px; }
+  .why-copy p:last-child { margin-bottom: 0; }
+  .why-quote {
+    border-left: 3px solid var(--teal); padding-left: 28px;
+    font-size: 22px; font-weight: 300; line-height: 1.5;
+    color: var(--black); font-style: italic;
+  }
+
+  /* STACK */
+  .stack-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1px; background: #181816; border: 1px solid #181816; margin-bottom: 64px; }
+  .stack-cell { background: #0E0E0C; padding: 24px 20px; font-family: 'Bebas Neue', sans-serif; font-size: 17px; letter-spacing: 2px; color: rgba(248,246,242,0.55); transition: background 0.2s, color 0.2s; }
+  .stack-cell:hover { background: rgba(10,124,110,0.1); color: var(--tealhi); }
+  .stack-cat { display: block; font-size: 9px; letter-spacing: 3px; color: var(--orange); margin-bottom: 5px; }
+
+  /* FEATURES */
+  .features-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2px; }
+  .feature-card {
+    background: #0E0E0C; padding: 36px 32px;
+    border: 1px solid #1a1a18;
+    transition: background 0.2s;
+  }
+  .feature-card:hover { background: rgba(10,124,110,0.08); }
+  .feature-num {
+    font-family: 'Bebas Neue', sans-serif; font-size: 48px;
+    color: rgba(10,124,110,0.3); line-height: 1; margin-bottom: 12px;
+  }
+  .feature-name { font-family: 'Bebas Neue', sans-serif; font-size: 20px; color: #F8F6F2; letter-spacing: 1px; margin-bottom: 10px; }
+  .feature-desc { font-size: 13px; font-weight: 300; color: rgba(248,246,242,0.5); line-height: 1.65; }
+
+  /* CHALLENGES */
+  .challenges { display: flex; flex-direction: column; gap: 2px; }
+  .challenge-card {
+    background: var(--card); padding: 36px 40px;
+    border: 1px solid var(--hairline);
+    display: grid; grid-template-columns: 80px 1fr; gap: 32px; align-items: start;
+    transition: transform 0.2s;
+  }
+  .challenge-card:hover { transform: translateX(6px); }
+  .challenge-num { font-family: 'Bebas Neue', sans-serif; font-size: 48px; color: var(--hairline); line-height: 1; }
+  .challenge-title { font-family: 'Bebas Neue', sans-serif; font-size: 22px; color: var(--black); letter-spacing: 1px; margin-bottom: 10px; }
+  .challenge-desc { font-size: 14px; font-weight: 300; color: var(--mid); line-height: 1.7; }
+
+  /* DESIGN PROCESS */
+  .process-placeholder {
+    background: var(--card); border: 1px dashed var(--hairline);
+    padding: 80px 40px; text-align: center;
+  }
+  .process-placeholder-icon {
+    font-family: 'Bebas Neue', sans-serif; font-size: 48px;
+    color: var(--hairline); margin-bottom: 16px;
+  }
+  .process-placeholder-text {
+    font-family: 'Bebas Neue', sans-serif; font-size: 16px;
+    letter-spacing: 3px; color: var(--hairline);
+  }
+  .process-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2px; }
+  .process-card {
+    background: var(--card); border: 1px solid var(--hairline);
+    padding: 36px 32px;
+  }
+  .process-step { font-family: 'Bebas Neue', sans-serif; font-size: 12px; letter-spacing: 4px; color: var(--orange); margin-bottom: 12px; }
+  .process-title { font-family: 'Bebas Neue', sans-serif; font-size: 24px; color: var(--black); letter-spacing: 1px; margin-bottom: 12px; }
+  .process-desc { font-size: 14px; font-weight: 300; color: var(--mid); line-height: 1.7; }
+
+  /* DIFFERENT */
+  .diff-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+  .diff-card {
+    padding: 48px 40px; background: var(--card);
+    border: 1px solid var(--hairline);
+  }
+  .diff-card.accent { background: var(--teal); border-color: var(--teal); }
+  .diff-label { font-family: 'Bebas Neue', sans-serif; font-size: 11px; letter-spacing: 4px; color: var(--mid); margin-bottom: 16px; }
+  .diff-card.accent .diff-label { color: rgba(255,255,255,0.6); }
+  .diff-title { font-family: 'Bebas Neue', sans-serif; font-size: 32px; color: var(--black); letter-spacing: 1px; line-height: 1.1; margin-bottom: 16px; }
+  .diff-card.accent .diff-title { color: #fff; }
+  .diff-body { font-size: 15px; font-weight: 300; color: var(--mid); line-height: 1.7; }
+  .diff-card.accent .diff-body { color: rgba(255,255,255,0.75); }
+
+  /* FOOTER NAV */
+  .page-footer {
+    background: var(--black); padding: 64px 52px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .footer-back {
+    font-family: 'Bebas Neue', sans-serif; font-size: 14px; letter-spacing: 2px;
+    color: rgba(248,246,242,0.4); text-decoration: none;
+    display: flex; align-items: center; gap: 8px;
+    transition: color 0.2s;
+  }
+  .footer-back:hover { color: var(--teal); }
+  .footer-back::before { content: '←'; }
+  .f-copy { font-size: 11px; color: rgba(248,246,242,0.2); letter-spacing: 1.5px; }
+
+  @media (max-width: 768px) {
+    nav { padding: 0 24px; }
+    .hero { padding: 100px 24px 60px; }
+    .section { padding: 64px 24px; }
+    .why-grid { grid-template-columns: 1fr; gap: 40px; }
+    .diff-grid { grid-template-columns: 1fr; }
+    .challenge-card { grid-template-columns: 1fr; gap: 8px; }
+    .page-footer { padding: 40px 24px; flex-direction: column; gap: 16px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo"><img src="mascot.png" alt="B++" /></a>
+  <a href="index.html" class="nav-back">BACK TO PORTFOLIO</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-badge">⬡ TESTFLIGHT</div>
+    <img src="fitgrade.png" alt="FitGrade" class="hero-logo" />
+    <h1 class="hero-title">FIT<span>GRADE</span></h1>
+    <p class="hero-sub">B2B fitness platform for coaches, trainers, and athletes. AI-powered training plans, role-based access, and a 3D body hologram that grades every muscle group.</p>
+    <div class="hero-tags">
+      <div class="tag">iOS</div>
+      <div class="tag">React Native</div>
+      <div class="tag">Firebase</div>
+      <div class="tag">Claude API</div>
+      <div class="tag">Expo</div>
+    </div>
+  </div>
+</section>
+
+<!-- THE WHY -->
+<section class="section">
+  <div class="sec-eye"><div class="hex"></div><span>THE WHY</span></div>
+  <h2 class="sec-title">WHERE IT STARTED</h2>
+  <div class="why-grid">
+    <div class="why-copy">
+      <p>FitGrade started as a learning project. The goal was simple — build a real SaaS from scratch and learn how the whole thing works end to end. The subject matter chose itself. Fitness was already part of daily life, the gym was already familiar territory, and the trainers there were already doing everything manually — spreadsheets, DMs, handwritten notes.</p>
+      <p>So the question became: what would it look like if a trainer could manage every athlete from one place? Not just see their progress but actually control access, generate AI training plans on the fly, track injury history, and grade physical readiness the way a coach grades film?</p>
+      <p>That question turned into months of iteration. Meeting with trainers at the gym. Rebuilding screens from scratch when they didn't feel right. Pushing builds to TestFlight and watching real people use it. FitGrade is what happened when learning to build met something worth building.</p>
+    </div>
+    <div class="why-quote">
+      "I wanted to learn how to build a SaaS so I picked an app I could use every day. I met with trainers at the gym and worked until it was finished."
+    </div>
+  </div>
+</section>
+
+<!-- THE BUILD -->
+<section class="section section-dark">
+  <div class="sec-eye sec-eye-dark"><div class="hex hex-teal"></div><span>THE BUILD</span></div>
+  <h2 class="sec-title sec-title-light">WHAT'S UNDER THE HOOD</h2>
+
+  <div class="stack-grid">
+    <div class="stack-cell"><span class="stack-cat">FRONTEND</span>React Native</div>
+    <div class="stack-cell"><span class="stack-cat">FRAMEWORK</span>Expo / EAS</div>
+    <div class="stack-cell"><span class="stack-cat">BACKEND</span>Firebase</div>
+    <div class="stack-cell"><span class="stack-cat">AI</span>Claude API</div>
+    <div class="stack-cell"><span class="stack-cat">AUTH</span>Firebase Auth</div>
+    <div class="stack-cell"><span class="stack-cat">DATABASE</span>Firestore</div>
+    <div class="stack-cell"><span class="stack-cat">STORAGE</span>Firebase Storage</div>
+    <div class="stack-cell"><span class="stack-cat">DEPLOY</span>EAS Build / Submit</div>
+  </div>
+
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-num">01</div>
+      <div class="feature-name">ROLE-BASED ACCESS</div>
+      <div class="feature-desc">Four distinct roles — Trainer, Athlete, Coach, and Parent — each with their own tailored dashboard, permissions, and data visibility. A trainer can see everything. An athlete sees only their own plan.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-num">02</div>
+      <div class="feature-name">3D BODY HOLOGRAM</div>
+      <div class="feature-desc">SVG-rendered body map that grades each muscle group based on training data. Visual health grading that tells athletes exactly where they're strong and where they need work.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-num">03</div>
+      <div class="feature-name">AI PLAN GENERATION</div>
+      <div class="feature-desc">Claude API integration generates personalized 7-day training programs based on sport, position, injury history, fitness level, and coach preferences. Generated in seconds.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-num">04</div>
+      <div class="feature-name">6-DIGIT JOIN CODES</div>
+      <div class="feature-desc">Athletes join a trainer's roster by entering a unique 6-digit code. No manual linking, no admin overhead. One code, one tap, instant roster connection.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-num">05</div>
+      <div class="feature-name">AUDIT LOG</div>
+      <div class="feature-desc">Every action is timestamped and logged — plan changes, clearance decisions, session completions. Full accountability for coaches managing multiple athletes.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-num">06</div>
+      <div class="feature-name">CLEARANCE WORKFLOW</div>
+      <div class="feature-desc">Injury tracking with a formal clearance system. Trainers flag athletes as injured, document the condition, and formally clear them before they return to full training.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CHALLENGES -->
+<section class="section">
+  <div class="sec-eye"><div class="hex"></div><span>THE HARD PARTS</span></div>
+  <h2 class="sec-title">WHAT PUSHED BACK</h2>
+  <div class="challenges">
+    <div class="challenge-card">
+      <div class="challenge-num">01</div>
+      <div>
+        <div class="challenge-title">EAS BUILD ENVIRONMENT INJECTION</div>
+        <div class="challenge-desc">The App Store rejection at build 2.1.0 came down to a missing <code>"environment": "production"</code> flag in the EAS production build profile. Without it, the API key injection wasn't firing and the Claude API calls were failing silently. Traced it down line by line.</div>
+      </div>
+    </div>
+    <div class="challenge-card">
+      <div class="challenge-num">02</div>
+      <div>
+        <div class="challenge-title">ROLE-BASED DATA ARCHITECTURE</div>
+        <div class="challenge-desc">Designing a Firestore structure that could serve four different roles from the same database without leaking data across permission levels. Every query had to be scoped to the authenticated user's role before returning results.</div>
+      </div>
+    </div>
+    <div class="challenge-card">
+      <div class="challenge-num">03</div>
+      <div>
+        <div class="challenge-title">SVG BODY HOLOGRAM</div>
+        <div class="challenge-desc">Building a body map that updates in real time based on training data meant mapping every muscle group to an SVG path, binding each path to a color scale, and making the whole thing interactive without killing performance on device.</div>
+      </div>
+    </div>
+    <div class="challenge-card">
+      <div class="challenge-num">04</div>
+      <div>
+        <div class="challenge-title">REAL TRAINER FEEDBACK LOOPS</div>
+        <div class="challenge-desc">The hardest challenge wasn't technical — it was going back to the gym after a build and hearing that something didn't work the way a real trainer expected. Several full UI rebuilds came from those conversations.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DESIGN PROCESS -->
+<section class="section">
+  <div class="sec-eye"><div class="hex"></div><span>DESIGN PROCESS</span></div>
+  <h2 class="sec-title">HOW IT WAS BUILT</h2>
+  <div class="process-grid">
+    <div class="process-card">
+      <div class="process-step">PHASE 01</div>
+      <div class="process-title">RESEARCH</div>
+      <div class="process-desc">Talked to trainers at the gym directly. Understood their workflow, what they hated about existing tools, and what they actually needed day to day. No assumptions.</div>
+    </div>
+    <div class="process-card">
+      <div class="process-step">PHASE 02</div>
+      <div class="process-title">ARCHITECTURE</div>
+      <div class="process-desc">Mapped out the role system, data model, and navigation structure before writing a single component. Four roles, one database, zero data leakage.</div>
+    </div>
+    <div class="process-card">
+      <div class="process-step">PHASE 03</div>
+      <div class="process-title">ITERATION</div>
+      <div class="process-desc">Multiple full UI rebuilds. The hologram went through three versions. The join code system replaced a more complex invite flow that was too clunky to use in a gym setting.</div>
+    </div>
+    <div class="process-card">
+      <div class="process-step">PHASE 04</div>
+      <div class="process-title">TESTING</div>
+      <div class="process-desc">TestFlight builds pushed to real trainers and athletes. Feedback collected in the gym, not on a form. Real usage surfaced things no simulator ever would.</div>
+    </div>
+    <div class="process-card">
+      <div class="process-step">PHASE 05 — COMING SOON</div>
+      <div class="process-title">SCREENSHOTS & DIAGRAMS</div>
+      <div class="process-desc">UI screenshots, flow diagrams, and design system documentation will be added here as the project moves toward full App Store submission.</div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT MAKES IT DIFFERENT -->
+<section class="section" style="padding-bottom: 0;">
+  <div class="sec-eye"><div class="hex"></div><span>THE ANGLE</span></div>
+  <h2 class="sec-title">WHAT MAKES IT DIFFERENT</h2>
+  <div class="diff-grid">
+    <div class="diff-card accent">
+      <div class="diff-label">THE THING NO ONE ELSE HAS</div>
+      <div class="diff-title">A BODY THAT GRADES ITSELF</div>
+      <div class="diff-body">Every fitness app shows you numbers. FitGrade shows you a body — your body — color-graded by muscle group based on actual training data. It's the difference between reading a spreadsheet and reading a health scan.</div>
+    </div>
+    <div class="diff-card">
+      <div class="diff-label">THE BUSINESS MODEL INSIGHT</div>
+      <div class="diff-title">BUILT FOR THE TRAINER, NOT THE ATHLETE</div>
+      <div class="diff-body">Every other fitness app goes direct to consumer. FitGrade goes B2B — the trainer is the customer, the athlete is the user. That means stickier retention, higher value, and a model that scales with a gym's client roster.</div>
+    </div>
+    <div class="diff-card">
+      <div class="diff-label">THE AI LAYER</div>
+      <div class="diff-title">PLANS IN SECONDS, NOT HOURS</div>
+      <div class="diff-body">A trainer writing a custom 7-day program for every athlete is hours of work. FitGrade does it in seconds via Claude API, then lets the trainer edit, approve, or regenerate. AI does the draft, the trainer does the judgment.</div>
+    </div>
+    <div class="diff-card">
+      <div class="diff-label">THE INTEGRITY LAYER</div>
+      <div class="diff-title">EVERY ACTION LOGGED</div>
+      <div class="diff-body">When an athlete gets injured and then cleared to return, that decision is documented. The audit log makes FitGrade the only fitness platform where coaches can actually prove their duty of care.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<div class="page-footer">
+  <a href="index.html" class="footer-back">BACK TO ALL PROJECTS</a>
+  <div class="f-copy">© 2026 BRANDON MONTFORD · B++ STUDIO</div>
+</div>
+
+</body>
+</html>

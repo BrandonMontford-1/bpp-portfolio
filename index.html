@@ -79,7 +79,7 @@
   .hero-mascot-wrap img { width: 100%; display: block; filter: drop-shadow(0 8px 48px rgba(10,124,110,0.12)); }
 
   .ticker { background: var(--black); height: 34px; overflow: hidden; display: flex; align-items: center; }
-  .ticker-inner { display: flex; animation: tick 28s linear infinite; white-space: nowrap; }
+  .ticker-inner { display: flex; animation: tick 35s linear infinite; white-space: nowrap; }
   .t-item { display: flex; align-items: center; gap: 10px; padding: 0 24px; font-family: 'Bebas Neue', sans-serif; font-size: 11px; letter-spacing: 2px; color: rgba(234,230,222,0.65); }
   .t-dot { color: var(--orange); }
   @keyframes tick { from { transform: translateX(0); } to { transform: translateX(-50%); } }
@@ -89,7 +89,7 @@
   .sec-eye span { font-family: 'Bebas Neue', sans-serif; font-size: 12px; letter-spacing: 4px; color: var(--teal); }
   .sec-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(44px, 6vw, 74px); color: var(--black); letter-spacing: 2px; line-height: 1; margin-bottom: 56px; }
 
-  .work-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 2px; }
+  .work-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 2px; }
   .app-card { background: var(--card); padding: 36px 32px; border: 1px solid var(--hairline); position: relative; overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; }
   .app-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.07); }
   .card-bar { position: absolute; top: 0; left: 0; right: 0; height: 3px; }
@@ -101,13 +101,24 @@
   .card-plat { font-size: 11px; color: var(--mid); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 14px; }
   .card-desc { font-size: 14px; font-weight: 300; color: var(--charcoal); line-height: 1.65; }
 
+  .expand-btn {
+    text-align: center; margin-top: 48px; cursor: pointer;
+    font-family: 'Bebas Neue', sans-serif; font-size: 13px; letter-spacing: 3px;
+    color: var(--teal); background: transparent; border: 1px solid var(--hairline);
+    padding: 14px 34px; width: fit-content; margin-left: auto; margin-right: auto;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .expand-btn:hover { border-color: var(--teal); color: var(--tealhi); }
+  .more-projects { display: none; }
+  .more-projects.show { display: block; }
+
   .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 88px; align-items: center; }
   .about-copy { font-size: 16px; font-weight: 300; line-height: 1.8; color: var(--charcoal); margin-bottom: 28px; }
-  .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 44px; }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; margin-top: 44px; }
   .stat { border-top: 2px solid var(--teal); padding-top: 14px; }
-  .stat-n { font-family: 'Bebas Neue', sans-serif; font-size: 52px; color: var(--black); line-height: 1; }
+  .stat-n { font-family: 'Bebas Neue', sans-serif; font-size: 42px; color: var(--black); line-height: 1; }
   .stat-n span { color: var(--orange); }
-  .stat-l { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--mid); margin-top: 3px; }
+  .stat-l { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--mid); margin-top: 3px; }
   .architect-photo { width: 100%; height: 520px; object-fit: cover; object-position: center top; display: block; border-bottom: 4px solid var(--teal); }
 
   .skills-sec { background: var(--black); }
@@ -146,6 +157,7 @@
     .architect-photo { height: 320px; }
     .divider { margin: 0 24px; }
     footer { padding: 28px 24px; flex-direction: column; gap: 10px; text-align: center; }
+    .stats { grid-template-columns: repeat(2, 1fr); gap: 20px; }
   }
 </style>
 </head>
@@ -167,7 +179,7 @@
     <div class="eyebrow"><div class="hex"></div><span>BEE.BUILD() — ATLANTA, GA</span></div>
     <h1 class="hero-title">BRANDON<br>MONT<span>FORD</span></h1>
     <div class="hero-rule"></div>
-    <p class="hero-sub">Mobile engineer from Atlanta, GA with a passion for building apps that matter. Assistive technology, health tools, speech assistance, autonomous AI agents, and games.</p>
+    <p class="hero-sub">21-year-old mobile engineer from Atlanta, GA. Dual degree in CS + Communications. Division III athlete turned builder. 20+ apps in 5 weeks since graduation. Assistive tech, health tools, speech AI, and games.</p>
     <div class="hero-cta">
       <a href="#work" class="btn-p">VIEW WORK</a>
       <a href="#contact" class="btn-g">GET IN TOUCH</a>
@@ -180,46 +192,58 @@
 
 <div class="ticker">
   <div class="ticker-inner">
-    <div class="t-item"><span class="t-dot">⬡</span>VOICEBRIDGE — APP STORE LIVE</div>
-    <div class="t-item"><span class="t-dot">⬡</span>ROUTERUNNER — APP STORE LIVE</div>
-    <div class="t-item"><span class="t-dot">⬡</span>MIRACLE LEAGUE OF SOUTH FULTON</div>
+    <div class="t-item"><span class="t-dot">⬡</span>VOICEBRIDGE — APP STORE</div>
+    <div class="t-item"><span class="t-dot">⬡</span>ROUTERUNNER — APP STORE</div>
+    <div class="t-item"><span class="t-dot">⬡</span>MIRACLE LEAGUE — SHIPPED</div>
     <div class="t-item"><span class="t-dot">⬡</span>FITGRADE — TESTFLIGHT</div>
     <div class="t-item"><span class="t-dot">⬡</span>LANECUTTER — IN DEV</div>
+    <div class="t-item"><span class="t-dot">⬡</span>TRENCH WORK — IN DEV</div>
     <div class="t-item"><span class="t-dot">⬡</span>SAM — IN DEV</div>
+    <div class="t-item"><span class="t-dot">⬡</span>NINA — IN DEV</div>
     <div class="t-item"><span class="t-dot">⬡</span>BIOME EXPLORER — IN DEV</div>
+    <div class="t-item"><span class="t-dot">⬡</span>MUSI LITE — IN DEV</div>
+    <div class="t-item"><span class="t-dot">⬡</span>SPADES — IN DEV</div>
+    <div class="t-item"><span class="t-dot">⬡</span>TRANSFORMERS — IN DEV</div>
+    <div class="t-item"><span class="t-dot">⬡</span>SPEEDFORCE — WEB DEMO</div>
     <div class="t-item"><span class="t-dot">⬡</span>B++ DEVBOOK — APP STORE</div>
-    <div class="t-item"><span class="t-dot">⬡</span>VOICEBRIDGE — APP STORE LIVE</div>
-    <div class="t-item"><span class="t-dot">⬡</span>ROUTERUNNER — APP STORE LIVE</div>
-    <div class="t-item"><span class="t-dot">⬡</span>MIRACLE LEAGUE OF SOUTH FULTON</div>
+    <div class="t-item"><span class="t-dot">⬡</span>VOICEBRIDGE — APP STORE</div>
+    <div class="t-item"><span class="t-dot">⬡</span>ROUTERUNNER — APP STORE</div>
+    <div class="t-item"><span class="t-dot">⬡</span>MIRACLE LEAGUE — SHIPPED</div>
     <div class="t-item"><span class="t-dot">⬡</span>FITGRADE — TESTFLIGHT</div>
     <div class="t-item"><span class="t-dot">⬡</span>LANECUTTER — IN DEV</div>
+    <div class="t-item"><span class="t-dot">⬡</span>TRENCH WORK — IN DEV</div>
     <div class="t-item"><span class="t-dot">⬡</span>SAM — IN DEV</div>
+    <div class="t-item"><span class="t-dot">⬡</span>NINA — IN DEV</div>
     <div class="t-item"><span class="t-dot">⬡</span>BIOME EXPLORER — IN DEV</div>
+    <div class="t-item"><span class="t-dot">⬡</span>MUSI LITE — IN DEV</div>
+    <div class="t-item"><span class="t-dot">⬡</span>SPADES — IN DEV</div>
+    <div class="t-item"><span class="t-dot">⬡</span>TRANSFORMERS — IN DEV</div>
+    <div class="t-item"><span class="t-dot">⬡</span>SPEEDFORCE — WEB DEMO</div>
     <div class="t-item"><span class="t-dot">⬡</span>B++ DEVBOOK — APP STORE</div>
   </div>
 </div>
 
 <section id="work">
-  <div class="sec-eye"><div class="hex"></div><span>SHIPPED WORK</span></div>
+  <div class="sec-eye"><div class="hex"></div><span>SHIPPED & IN DEV</span></div>
   <h2 class="sec-title">THE BUILDS</h2>
-  <div class="work-grid">
-
+  <div class="work-grid" id="work-grid">
+    <!-- MAIN PROJECTS -->
     <div class="app-card">
       <div class="card-bar" style="background:#0A7C6E;"></div>
-      <img src="voicebridge.png" class="card-logo-img" alt="VoiceBridge" />
-      <div class="card-badge" style="background:#EBF5F3;color:#0A7C6E;"><div class="bdot" style="background:#0A7C6E;"></div>SHIPPED</div>
+      <div class="card-logo-ph" style="background:#EBF5F3;color:#0A7C6E;">VB</div>
+      <div class="card-badge" style="background:#EBF5F3;color:#0A7C6E;"><div class="bdot" style="background:#0A7C6E;"></div>APP STORE</div>
       <div class="card-name">VOICEBRIDGE</div>
       <div class="card-plat">iOS · React Native · Expo</div>
-      <div class="card-desc">AAC communication app built for a family member with a developmental condition. Multi-user profiles, caregiver PIN, scene boards, and a full symbol library.</div>
+      <div class="card-desc">AAC communication app built for a family member with Down syndrome. Multi-user profiles, caregiver PIN lock, scene boards, 18 accessibility features. Live on App Store.</div>
     </div>
 
     <div class="app-card">
       <div class="card-bar" style="background:#0A7C6E;"></div>
-      <img src="routerunner.png" class="card-logo-img" alt="RouteRunner" />
-      <div class="card-badge" style="background:#EBF5F3;color:#0A7C6E;"><div class="bdot" style="background:#0A7C6E;"></div>SHIPPED</div>
+      <div class="card-logo-ph" style="background:#EBF5F3;color:#0A7C6E;">RR</div>
+      <div class="card-badge" style="background:#EBF5F3;color:#0A7C6E;"><div class="bdot" style="background:#0A7C6E;"></div>APP STORE</div>
       <div class="card-name">ROUTERUNNER</div>
       <div class="card-plat">iOS · SwiftUI</div>
-      <div class="card-desc">1v1 WR vs CB football arcade game. Canvas-rendered field, career mode, 10-week season, CoreHaptics, and CB trash talk. Live on the App Store.</div>
+      <div class="card-desc">1v1 WR vs CB football arcade game. Canvas-rendered field, career mode, 10-week season, CoreHaptics, and CB trash talk.</div>
     </div>
 
     <div class="app-card">
@@ -228,55 +252,141 @@
       <div class="card-badge" style="background:#EBF5F3;color:#0A7C6E;"><div class="bdot" style="background:#0A7C6E;"></div>SHIPPED</div>
       <div class="card-name">MIRACLE LEAGUE</div>
       <div class="card-plat">iOS · React Native · Expo</div>
-      <div class="card-desc">Community app for the Miracle League of South Fulton adaptive baseball league. Built from years of hands-on volunteering. Schedules, news, and roster.</div>
+      <div class="card-desc">Community app for Miracle League of South Fulton adaptive baseball league. Built from years of volunteering. Schedules, news, roster management.</div>
     </div>
 
     <div class="app-card">
       <div class="card-bar" style="background:#F4651A;"></div>
-      <img src="fitgrade.png" class="card-logo-img" alt="FitGrade" />
-      <div class="card-badge" style="background:#EBF5F3;color:#0A7C6E;"><div class="bdot" style="background:#0A7C6E;"></div>SHIPPED</div>
+      <div class="card-logo-ph" style="background:#FFF2EB;color:#F4651A;">FG</div>
+      <div class="card-badge" style="background:#FFF2EB;color:#F4651A;"><div class="bdot" style="background:#F4651A;"></div>TESTFLIGHT</div>
       <div class="card-name">FITGRADE</div>
       <div class="card-plat">iOS · React Native · Firebase</div>
-      <div class="card-desc">B2B fitness platform for coaches and athletes. Role-based access, 3D body hologram health grading, AI plan generation, join codes, and audit log.</div>
+      <div class="card-desc">B2B fitness platform for coaches and athletes. Role-based access, 3D body hologram health grading, AI plan generation, join codes, audit log.</div>
     </div>
 
     <div class="app-card">
       <div class="card-bar" style="background:#0A7C6E;"></div>
-      <img src="devbook.png" class="card-logo-img" alt="B++ DevBook" />
-      <div class="card-badge" style="background:#EBF5F3;color:#0A7C6E;"><div class="bdot" style="background:#0A7C6E;"></div>SHIPPED</div>
+      <div class="card-logo-ph" style="background:#EBF5F3;color:#0A7C6E;">B++</div>
+      <div class="card-badge" style="background:#EBF5F3;color:#0A7C6E;"><div class="bdot" style="background:#0A7C6E;"></div>APP STORE</div>
       <div class="card-name">B++ DEVBOOK</div>
       <div class="card-plat">iOS · React Native · Expo</div>
-      <div class="card-desc">The very app used to build and track every project on this page. Log updates, capture ideas, and manage your entire portfolio from your phone.</div>
+      <div class="card-desc">The app used to build and track every project on this page. Log updates, capture ideas, manage portfolio from your phone.</div>
     </div>
 
     <div class="app-card">
       <div class="card-bar" style="background:#909088;"></div>
-      <img src="lanecutter.png" class="card-logo-img" alt="LaneCutter" />
+      <div class="card-logo-ph" style="background:#F0EFEB;color:#909088;">LC</div>
       <div class="card-badge" style="background:#F0EFEB;color:#909088;"><div class="bdot" style="background:#909088;"></div>IN DEV</div>
       <div class="card-name">LANECUTTER</div>
       <div class="card-plat">iOS · SwiftUI</div>
-      <div class="card-desc">Running back lane-drawing game. Draw your path through defenders, break tackles, and take it to the house. Built in SwiftUI with CoreHaptics.</div>
+      <div class="card-desc">Running back lane-drawing game. Draw your path through defenders, break tackles, take it to the house. CoreHaptics, real-time physics.</div>
     </div>
 
     <div class="app-card">
       <div class="card-bar" style="background:#909088;"></div>
-      <img src="sam.png" class="card-logo-img" alt="SAM" />
+      <div class="card-logo-ph" style="background:#F0EFEB;color:#909088;">TW</div>
+      <div class="card-badge" style="background:#F0EFEB;color:#909088;"><div class="bdot" style="background:#909088;"></div>IN DEV</div>
+      <div class="card-name">TRENCH WORK</div>
+      <div class="card-plat">iOS · SwiftUI</div>
+      <div class="card-desc">Lineman battle game. OL/DL upgrades, team chemistry, depth chart system, RB gap prediction. 9 upgradable positions.</div>
+    </div>
+
+    <div class="app-card">
+      <div class="card-bar" style="background:#909088;"></div>
+      <div class="card-logo-ph" style="background:#F0EFEB;color:#909088;">SA</div>
       <div class="card-badge" style="background:#F0EFEB;color:#909088;"><div class="bdot" style="background:#909088;"></div>IN DEV</div>
       <div class="card-name">SAM</div>
       <div class="card-plat">iOS · React Native · Claude API</div>
-      <div class="card-desc">Voice-powered stock assistant. Real-time market data, AI-driven analysis, watchlist management, and natural language queries for investors.</div>
+      <div class="card-desc">Voice-powered stock assistant. Real-time market data via Yahoo Finance, AI-driven analysis, watchlist, natural language queries.</div>
     </div>
-
-    <div class="app-card">
-      <div class="card-bar" style="background:#909088;"></div>
-      <img src="biomeexplorer.png" class="card-logo-img" alt="Biome Explorer" />
-      <div class="card-badge" style="background:#F0EFEB;color:#909088;"><div class="bdot" style="background:#909088;"></div>IN DEV</div>
-      <div class="card-name">BIOME EXPLORER</div>
-      <div class="card-plat">iOS · Swift · SceneKit</div>
-      <div class="card-desc">3D ball-roller exploration game across four biomes. Frostfall, Ashkeep, Veridian, and Hearth. Full SceneKit physics, camera controls, and ecosystem collection.</div>
-    </div>
-
   </div>
+
+  <!-- HIDDEN EXTRA PROJECTS -->
+  <div id="more-projects" class="more-projects">
+    <div class="work-grid">
+      <div class="app-card">
+        <div class="card-bar" style="background:#909088;"></div>
+        <div class="card-logo-ph" style="background:#F0EFEB;color:#909088;">NI</div>
+        <div class="card-badge" style="background:#F0EFEB;color:#909088;"><div class="bdot" style="background:#909088;"></div>IN DEV</div>
+        <div class="card-name">NINA</div>
+        <div class="card-plat">iOS · SwiftUI · Claude API</div>
+        <div class="card-desc">Investment assistant sister of SAM. Stock lookup, charts, favorites, private notes, Yahoo Finance integration.</div>
+      </div>
+
+      <div class="app-card">
+        <div class="card-bar" style="background:#909088;"></div>
+        <div class="card-logo-ph" style="background:#F0EFEB;color:#909088;">BE</div>
+        <div class="card-badge" style="background:#F0EFEB;color:#909088;"><div class="bdot" style="background:#909088;"></div>IN DEV</div>
+        <div class="card-name">BIOME EXPLORER</div>
+        <div class="card-plat">iOS · Swift · SceneKit</div>
+        <div class="card-desc">3D ball-roller exploration game across 4 biomes. Full physics, particle collection, ecosystem simulation.</div>
+      </div>
+
+      <div class="app-card">
+        <div class="card-bar" style="background:#909088;"></div>
+        <div class="card-logo-ph" style="background:#F0EFEB;color:#909088;">ML</div>
+        <div class="card-badge" style="background:#F0EFEB;color:#909088;"><div class="bdot" style="background:#909088;"></div>IN DEV</div>
+        <div class="card-name">MUSI LITE</div>
+        <div class="card-plat">iOS · SwiftUI · AVFoundation</div>
+        <div class="card-desc">iPod Classic white edition YouTube music player. Rotating click wheel, queue management, background playback, caching.</div>
+      </div>
+
+      <div class="app-card">
+        <div class="card-bar" style="background:#909088;"></div>
+        <div class="card-logo-ph" style="background:#F0EFEB;color:#909088;">SP</div>
+        <div class="card-badge" style="background:#F0EFEB;color:#909088;"><div class="bdot" style="background:#909088;"></div>IN DEV</div>
+        <div class="card-name">SPADES</div>
+        <div class="card-plat">iOS · React Native</div>
+        <div class="card-desc">Full Spades card game. Classic, arcade (timed), and season modes. Autosave, resume, AI opponents, stats tracking.</div>
+      </div>
+
+      <div class="app-card">
+        <div class="card-bar" style="background:#909088;"></div>
+        <div class="card-logo-ph" style="background:#F0EFEB;color:#909088;">TF</div>
+        <div class="card-badge" style="background:#F0EFEB;color:#909088;"><div class="bdot" style="background:#909088;"></div>IN DEV</div>
+        <div class="card-name">TRANSFORMERS</div>
+        <div class="card-plat">React Native</div>
+        <div class="card-desc">Transformers Prime card game. 3 seasons, 5 episodes each, war of attrition, sacrifice mechanic, 17+ characters.</div>
+      </div>
+
+      <div class="app-card">
+        <div class="card-bar" style="background:#F4651A;"></div>
+        <div class="card-logo-ph" style="background:#FFF2EB;color:#F4651A;">SF</div>
+        <div class="card-badge" style="background:#FFF2EB;color:#F4651A;"><div class="bdot" style="background:#F4651A;"></div>WEB DEMO</div>
+        <div class="card-name">SPEEDFORCE</div>
+        <div class="card-plat">Web · Three.js</div>
+        <div class="card-desc">3D racing/collecting game. Open world, rival AI, particle collection, leaderboard, speed tiers up to 1000 MPH.</div>
+      </div>
+
+      <div class="app-card">
+        <div class="card-bar" style="background:#909088;"></div>
+        <div class="card-logo-ph" style="background:#F0EFEB;color:#909088;">PP</div>
+        <div class="card-badge" style="background:#F0EFEB;color:#909088;"><div class="bdot" style="background:#909088;"></div>IN DEV</div>
+        <div class="card-name">PACEPAL</div>
+        <div class="card-plat">React Native</div>
+        <div class="card-desc">Health tracking app with login, about page, health dashboard. Built as capstone project demo.</div>
+      </div>
+
+      <div class="app-card">
+        <div class="card-bar" style="background:#909088;"></div>
+        <div class="card-logo-ph" style="background:#F0EFEB;color:#909088;">AR</div>
+        <div class="card-badge" style="background:#F0EFEB;color:#909088;"><div class="bdot" style="background:#909088;"></div>IN DEV</div>
+        <div class="card-name">ANDROID REHAB</div>
+        <div class="card-plat">Android · Kotlin Compose</div>
+        <div class="card-desc">Spy/fitness rehab app. Body metrics tracking, health dashboard, training calendar, history log.</div>
+      </div>
+
+      <div class="app-card">
+        <div class="card-bar" style="background:#909088;"></div>
+        <div class="card-logo-ph" style="background:#F0EFEB;color:#909088;">LC</div>
+        <div class="card-badge" style="background:#F0EFEB;color:#909088;"><div class="bdot" style="background:#909088;"></div>IN DEV</div>
+        <div class="card-name">LEGACY ANALYZER</div>
+        <div class="card-plat">Android · JNI · C++</div>
+        <div class="card-desc">Legacy code analyzer. Native C++ parsing of C-style code, loop/conditional detection, line-by-line analysis.</div>
+      </div>
+    </div>
+  </div>
+  <div class="expand-btn" onclick="document.getElementById('more-projects').classList.toggle('show'); this.style.display='none';">+ SHOW ALL PROJECTS (20+)</div>
 </section>
 
 <div class="divider"></div>
@@ -286,13 +396,13 @@
     <div>
       <div class="sec-eye"><div class="hex"></div><span>ABOUT</span></div>
       <h2 class="sec-title">THE ARCHITECT</h2>
-      <p class="about-copy">Brandon Montford is a 21-year-old mobile engineer from Atlanta, GA with a passion for building apps that make a real difference. Recent graduate of Concordia University Chicago with a dual Bachelor's in Computer Science and Communications. Dean's List, Best Capstone Award, top 10 nationally in an IEEE competition, and inaugural Honor Council member.</p>
-      <p class="about-copy">Former Division III student-athlete in football and track. That same discipline carries into every build.</p>
-      <p class="about-copy">The focus is on apps that actually help people. Assistive technology, health tools, speech assistance, autonomous AI agents, and games. VoiceBridge was built for a family member. Miracle League grew from years of volunteering with an adaptive baseball league. The range is the point.</p>
+      <p class="about-copy">Brandon Montford is a 21-year-old mobile engineer from Atlanta, GA. Recent graduate of Concordia University Chicago with a dual Bachelor's in Computer Science and Communications. Dean's List, Best Capstone Award, top 10 nationally in IEEE competition, and inaugural Honor Council member.</p>
+      <p class="about-copy">Former Division III student-athlete in football and track. That same discipline carries into every build. In the 5 weeks since graduation, Brandon has shipped or built 20+ applications across iOS, Android, React Native, and web.</p>
+      <p class="about-copy">The focus is on apps that actually help people. Assistive technology, health tools, speech assistance, autonomous AI agents, and games. VoiceBridge was built for a family member with Down syndrome. Miracle League grew from years of volunteering with an adaptive baseball league. The range is the point.</p>
       <div class="stats">
-        <div class="stat"><div class="stat-n">8<span>+</span></div><div class="stat-l">Apps Built</div></div>
+        <div class="stat"><div class="stat-n">20<span>+</span></div><div class="stat-l">Apps Built</div></div>
         <div class="stat"><div class="stat-n">3</div><div class="stat-l">App Store Live</div></div>
-        <div class="stat"><div class="stat-n">2<span>+</span></div><div class="stat-l">Years Building</div></div>
+        <div class="stat"><div class="stat-n">5</div><div class="stat-l">Weeks Since Grad</div></div>
         <div class="stat"><div class="stat-n">0</div><div class="stat-l">Days Off</div></div>
       </div>
     </div>
@@ -311,6 +421,7 @@
     <div class="skill-cell"><span class="skill-cat">MOBILE</span>React Native</div>
     <div class="skill-cell"><span class="skill-cat">MOBILE</span>Swift</div>
     <div class="skill-cell"><span class="skill-cat">MOBILE</span>SwiftUI</div>
+    <div class="skill-cell"><span class="skill-cat">MOBILE</span>Kotlin Compose</div>
     <div class="skill-cell"><span class="skill-cat">FRAMEWORK</span>Expo / EAS</div>
     <div class="skill-cell"><span class="skill-cat">BACKEND</span>Firebase</div>
     <div class="skill-cell"><span class="skill-cat">BACKEND</span>Supabase</div>
@@ -319,6 +430,9 @@
     <div class="skill-cell"><span class="skill-cat">3D / GAME</span>SceneKit</div>
     <div class="skill-cell"><span class="skill-cat">LANGUAGE</span>JavaScript</div>
     <div class="skill-cell"><span class="skill-cat">LANGUAGE</span>TypeScript</div>
+    <div class="skill-cell"><span class="skill-cat">LANGUAGE</span>C++</div>
+    <div class="skill-cell"><span class="skill-cat">LANGUAGE</span>Kotlin</div>
+    <div class="skill-cell"><span class="skill-cat">NATIVE</span>JNI</div>
     <div class="skill-cell"><span class="skill-cat">TOOLS</span>Xcode / EAS</div>
   </div>
 </section>
@@ -341,8 +455,8 @@
       <a href="https://apps.apple.com/us/app/voicebridge/id6762594507" target="_blank" class="c-link">
         <div class="c-icon"></div><span class="c-label">VOICEBRIDGE</span><span class="c-val">App Store ↗</span>
       </a>
-      <a href="https://www.youtube.com/watch?v=v7X2Jef8L0g" target="_blank" class="c-link">
-        <div class="c-icon"></div><span class="c-label">PACEPAL DEMO</span><span class="c-val">YouTube ↗</span>
+      <a href="https://apps.apple.com/us/app/routerunner3/id6772892512" target="_blank" class="c-link">
+        <div class="c-icon"></div><span class="c-label">ROUTERUNNER</span><span class="c-val">App Store ↗</span>
       </a>
     </div>
   </div>
@@ -351,8 +465,24 @@
 <div class="teal-bar"></div>
 <footer>
   <div class="f-logo"><img src="mascot.png" alt="B++" /></div>
-  <div class="f-copy">© 2026 BRANDON MONTFORD · BEE.BUILD()</div>
+  <div class="f-copy">© 2026 BRANDON MONTFORD · BEE.BUILD() · 20+ APPS IN 5 WEEKS</div>
 </footer>
 
+<script>
+  // Simple expand/collapse for more projects
+  window.toggleProjects = function() {
+    const el = document.getElementById('more-projects');
+    const btn = document.querySelector('.expand-btn');
+    if (el.classList.contains('show')) {
+      el.classList.remove('show');
+      btn.style.display = 'block';
+    } else {
+      el.classList.add('show');
+      btn.style.display = 'none';
+    }
+  }
+  // Attach to button
+  document.querySelector('.expand-btn')?.addEventListener('click', toggleProjects);
+</script>
 </body>
 </html>

@@ -96,6 +96,16 @@ nav{
   color:#fff;font-size:12px;font-weight:600;
 }
 .photo-card-wide{grid-column:1/-1;aspect-ratio:16/7;}
+.photo-card-wide video{width:100%;height:100%;object-fit:cover;display:block;}
+/* Rotating photos */
+.rotating-card{position:relative;border-radius:16px;overflow:hidden;aspect-ratio:4/3;background:#e5e5ea;}
+.rotating-card .slide{position:absolute;inset:0;opacity:0;transition:opacity 0.8s ease;}
+.rotating-card .slide.active{opacity:1;}
+.rotating-card .slide img{width:100%;height:100%;object-fit:cover;display:block;}
+.rotating-card .photo-card-label{position:absolute;bottom:0;left:0;right:0;padding:10px 14px;background:linear-gradient(transparent,rgba(0,0,0,0.55));color:#fff;font-size:12px;font-weight:600;z-index:2;}
+.rotating-dots{position:absolute;bottom:34px;left:50%;transform:translateX(-50%);display:flex;gap:5px;z-index:3;}
+.rotating-dot{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,0.5);transition:background .3s;}
+.rotating-dot.active{background:#fff;}
 
 /* SECTION */
 .section{padding:28px 24px 0;}
@@ -254,21 +264,37 @@ footer{border-top:1px solid var(--border);padding:20px 24px;margin-top:28px;disp
 <div class="photos-wrap">
   <div class="photos-label">In the Field</div>
   <div class="photos-grid">
+
+    <!-- BIG CARD — video -->
     <div class="photo-card photo-card-wide">
-      <img src="./photo-capstone.png" alt="PacePal Capstone — IEEE Top 10"/>
-      <div class="photo-card-label">PacePal Capstone · IEEE Top 10 Nationally</div>
+      <video autoplay muted loop playsinline>
+        <source src="./conference-video.mp4" type="video/mp4"/>
+      </video>
+      <div class="photo-card-label">Brandon Montford · Conference Presentation</div>
     </div>
-    <div class="photo-card">
-      <img src="./photo-conference.png" alt="ACCA Symposium"/>
-      <div class="photo-card-label">ACCA Symposium Presentation</div>
-    </div>
-    <div class="photo-card" style="background:linear-gradient(135deg,#00857a,#005c54);display:flex;align-items:center;justify-content:center;">
-      <div style="text-align:center;padding:20px;">
-        <div style="font-size:40px;margin-bottom:8px;">📱</div>
-        <div style="color:#fff;font-size:14px;font-weight:700;">17 Apps Built</div>
-        <div style="color:rgba(255,255,255,0.7);font-size:12px;margin-top:4px;">6 Live on App Store</div>
+
+    <!-- ROTATING CARD 1 -->
+    <div class="rotating-card" id="rotator1">
+      <div class="slide active"><img src="./photo-capstone.png" alt="PacePal Capstone"/></div>
+      <div class="slide"><img src="./photo-conference.png" alt="ACCA Symposium"/></div>
+      <div class="photo-card-label" id="rotator1-label">PacePal Capstone · IEEE Top 10</div>
+      <div class="rotating-dots">
+        <div class="rotating-dot active"></div>
+        <div class="rotating-dot"></div>
       </div>
     </div>
+
+    <!-- ROTATING CARD 2 -->
+    <div class="rotating-card" id="rotator2">
+      <div class="slide active"><img src="./photo-conference.png" alt="ACCA Symposium"/></div>
+      <div class="slide"><img src="./photo-capstone.png" alt="PacePal Capstone"/></div>
+      <div class="photo-card-label" id="rotator2-label">ACCA Symposium Presentation</div>
+      <div class="rotating-dots">
+        <div class="rotating-dot active"></div>
+        <div class="rotating-dot"></div>
+      </div>
+    </div>
+
   </div>
 </div>
 
@@ -521,5 +547,25 @@ footer{border-top:1px solid var(--border);padding:20px 24px;margin-top:28px;disp
   <div class="footer-copy">© 2026 · Built different.</div>
 </footer>
 
+<script>
+function startRotator(id, labels) {
+  const card = document.getElementById(id);
+  if (!card) return;
+  const slides = card.querySelectorAll('.slide');
+  const dots = card.querySelectorAll('.rotating-dot');
+  const labelEl = document.getElementById(id + '-label');
+  let current = 0;
+  setInterval(() => {
+    slides[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    current = (current + 1) % slides.length;
+    slides[current].classList.add('active');
+    dots[current].classList.add('active');
+    if (labelEl) labelEl.textContent = labels[current];
+  }, 3000);
+}
+startRotator('rotator1', ['PacePal Capstone · IEEE Top 10', 'ACCA Symposium Presentation']);
+startRotator('rotator2', ['ACCA Symposium Presentation', 'PacePal Capstone · IEEE Top 10']);
+</script>
 </body>
 </html>

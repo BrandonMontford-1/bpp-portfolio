@@ -276,21 +276,25 @@ footer{border-top:1px solid var(--border);padding:20px 24px;margin-top:28px;disp
     <!-- ROTATING CARD 1 -->
     <div class="rotating-card" id="rotator1">
       <div class="slide active"><img src="./photo-capstone.png" alt="PacePal Capstone"/></div>
-      <div class="slide"><img src="./photo-conference.png" alt="ACCA Symposium"/></div>
+      <div class="slide"><img src="./photo-hallway.png" alt="Research Hallway"/></div>
+      <div class="slide"><img src="./photo-robotics.png" alt="Robotics for Seniors"/></div>
       <div class="photo-card-label" id="rotator1-label">PacePal Capstone · IEEE Top 10</div>
       <div class="rotating-dots">
         <div class="rotating-dot active"></div>
+        <div class="rotating-dot"></div>
         <div class="rotating-dot"></div>
       </div>
     </div>
 
     <!-- ROTATING CARD 2 -->
     <div class="rotating-card" id="rotator2">
-      <div class="slide active"><img src="./photo-conference.png" alt="ACCA Symposium"/></div>
+      <div class="slide active"><img src="./photo-robotics.png" alt="Robotics for Seniors"/></div>
       <div class="slide"><img src="./photo-capstone.png" alt="PacePal Capstone"/></div>
-      <div class="photo-card-label" id="rotator2-label">ACCA Symposium Presentation</div>
+      <div class="slide"><img src="./photo-hallway.png" alt="Research Hallway"/></div>
+      <div class="photo-card-label" id="rotator2-label">STEM4NE1 · Robotics for Seniors</div>
       <div class="rotating-dots">
         <div class="rotating-dot active"></div>
+        <div class="rotating-dot"></div>
         <div class="rotating-dot"></div>
       </div>
     </div>
@@ -564,8 +568,8 @@ function startRotator(id, labels) {
     if (labelEl) labelEl.textContent = labels[current];
   }, 3000);
 }
-startRotator('rotator1', ['PacePal Capstone · IEEE Top 10', 'ACCA Symposium Presentation']);
-startRotator('rotator2', ['ACCA Symposium Presentation', 'PacePal Capstone · IEEE Top 10']);
+startRotator('rotator1', ['PacePal Capstone · IEEE Top 10', 'Research Symposium', 'STEM4NE1 · Robotics for Seniors']);
+startRotator('rotator2', ['STEM4NE1 · Robotics for Seniors', 'PacePal Capstone · IEEE Top 10', 'Research Symposium']);
 </script>
 </body>
 </html>

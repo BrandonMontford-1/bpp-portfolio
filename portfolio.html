@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>B++ · Brandon Montford · Mobile App Developer</title>
+<meta name="description" content="B++ by Brandon Montford. Mobile app developer based in Atlanta, GA. iOS, React Native, shipped products."/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg:#f2f2f7;
+  --surface:#ffffff;
+  --border:#e5e5ea;
+  --border2:#d1d1d6;
+  --text:#1c1c1e;
+  --text2:#3a3a3c;
+  --text3:#8e8e93;
+  --text4:#aeaeb2;
+  --teal:#00857a;
+  --teal-light:#e8f8f7;
+  --orange:#ff6b00;
+  --orange-light:#fff3eb;
+  --blue:#007aff;
+  --blue-light:#e8f1ff;
+  --green:#34c759;
+  --green-light:#eafaf0;
+  --purple:#5856d6;
+  --yellow:#ff9500;
+}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Inter',system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden;line-height:1.5;}
+
+/* NAV */
+nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(242,242,247,0.92);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  height:52px;display:flex;align-items:center;
+  padding:0 28px;gap:16px;
+}
+.nav-logo{display:flex;align-items:center;gap:9px;text-decoration:none;flex-shrink:0;}
+.nav-logo img{height:26px;width:auto;object-fit:contain;}
+.nav-logo-name{font-size:17px;font-weight:700;color:var(--text);letter-spacing:-0.3px;}
+.nav-search{
+  flex:1;max-width:340px;
+  display:flex;align-items:center;gap:8px;
+  background:#e5e5ea;border-radius:10px;
+  padding:7px 12px;
+}
+.nav-search-text{font-size:13px;color:var(--text3);}
+.nav-right{margin-left:auto;}
+.nav-contact{
+  background:var(--teal);color:#fff;
+  font-size:12px;font-weight:700;letter-spacing:0.1px;
+  padding:7px 16px;border-radius:20px;
+  text-decoration:none;transition:opacity .15s;
+}
+.nav-contact:hover{opacity:0.85;}
+
+/* HERO */
+.hero-wrap{padding:16px 24px 0;}
+.hero-card{
+  border-radius:20px;overflow:hidden;
+  background:linear-gradient(160deg,#00c7be 0%,#007a74 100%);
+  padding:40px 36px 36px;
+  position:relative;min-height:300px;
+  display:flex;flex-direction:column;justify-content:flex-end;
+}
+.hero-eyebrow{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.7);margin-bottom:8px;}
+.hero-title{font-size:clamp(40px,6vw,72px);font-weight:800;letter-spacing:-2px;line-height:1;color:#fff;margin-bottom:10px;}
+.hero-sub{font-size:16px;color:rgba(255,255,255,0.8);max-width:440px;line-height:1.55;margin-bottom:24px;}
+.hero-actions{display:flex;gap:10px;flex-wrap:wrap;}
+.hero-btn-white{background:#fff;color:var(--teal);font-size:13px;font-weight:700;padding:10px 20px;border-radius:20px;text-decoration:none;transition:opacity .15s;}
+.hero-btn-white:hover{opacity:0.88;}
+.hero-btn-outline{background:rgba(255,255,255,0.15);color:#fff;border:1px solid rgba(255,255,255,0.35);font-size:13px;font-weight:600;padding:10px 20px;border-radius:20px;text-decoration:none;}
+.hero-card-art{position:absolute;right:36px;top:50%;transform:translateY(-50%);display:flex;gap:12px;}
+.hero-card-art img{width:88px;height:88px;border-radius:20px;box-shadow:0 12px 32px rgba(0,0,0,0.22);object-fit:cover;}
+.hero-card-art img:nth-child(1){transform:rotate(-4deg);}
+.hero-card-art img:nth-child(2){transform:rotate(2deg);margin-top:18px;}
+.hero-card-art img:nth-child(3){transform:rotate(-2deg);}
+
+/* PHOTOS SECTION */
+.photos-wrap{padding:24px 24px 0;}
+.photos-label{font-size:13px;font-weight:700;color:var(--text);margin-bottom:14px;}
+.photos-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.photo-card{border-radius:16px;overflow:hidden;position:relative;aspect-ratio:4/3;background:#e5e5ea;}
+.photo-card img{width:100%;height:100%;object-fit:cover;display:block;}
+.photo-card-label{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:10px 14px;
+  background:linear-gradient(transparent,rgba(0,0,0,0.55));
+  color:#fff;font-size:12px;font-weight:600;
+}
+.photo-card-wide{grid-column:1/-1;aspect-ratio:16/7;}
+
+/* SECTION */
+.section{padding:28px 24px 0;}
+.section-label{font-size:13px;font-weight:700;color:var(--text);margin-bottom:14px;display:flex;align-items:center;justify-content:space-between;}
+.section-label a{font-size:13px;font-weight:600;color:var(--blue);text-decoration:none;}
+
+/* FEATURED 2-UP */
+.featured-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.app-featured{background:var(--surface);border-radius:16px;border:1px solid var(--border);overflow:hidden;transition:transform .2s,box-shadow .2s;}
+.app-featured:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,0.09);}
+.app-featured-banner{height:120px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+.app-featured-body{padding:14px 16px 16px;display:flex;align-items:flex-start;gap:12px;}
+.app-featured-icon{width:52px;height:52px;border-radius:12px;object-fit:cover;flex-shrink:0;box-shadow:0 3px 10px rgba(0,0,0,0.12);margin-top:-26px;position:relative;z-index:1;border:3px solid #fff;}
+.app-featured-info{flex:1;padding-top:2px;}
+.app-featured-name{font-size:15px;font-weight:700;color:var(--text);letter-spacing:-0.2px;}
+.app-featured-cat{font-size:12px;color:var(--text3);margin-top:1px;}
+.app-featured-desc{font-size:13px;color:var(--text2);line-height:1.5;margin-top:6px;}
+.app-featured-footer{display:flex;align-items:center;justify-content:space-between;padding:0 16px 14px;}
+
+/* APP LIST */
+.card-wrap{background:var(--surface);border-radius:16px;border:1px solid var(--border);padding:4px 16px;}
+.app-row{display:flex;align-items:center;gap:14px;padding:13px 0;border-bottom:1px solid var(--border);}
+.app-row:last-child{border-bottom:none;}
+.app-row-icon{width:52px;height:52px;border-radius:12px;object-fit:cover;flex-shrink:0;box-shadow:0 2px 8px rgba(0,0,0,0.10);}
+.app-row-info{flex:1;min-width:0;}
+.app-row-name{font-size:15px;font-weight:600;color:var(--text);letter-spacing:-0.1px;}
+.app-row-cat{font-size:12px;color:var(--text3);margin-top:1px;}
+.app-row-desc{font-size:12.5px;color:var(--text2);margin-top:3px;line-height:1.45;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+
+/* GET BUTTON */
+.btn-get{background:var(--blue-light);color:var(--blue);font-size:13px;font-weight:700;padding:6px 16px;border-radius:20px;text-decoration:none;white-space:nowrap;display:inline-block;transition:background .15s;}
+.btn-get:hover{background:#d4e8ff;}
+.btn-get-green{background:var(--green-light);color:var(--green);}
+.btn-get-orange{background:var(--orange-light);color:var(--orange);}
+.btn-get-teal{background:var(--teal-light);color:var(--teal);}
+
+/* STATUS */
+.status{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:600;color:var(--text3);}
+.status-dot{width:5px;height:5px;border-radius:50%;background:var(--green);}
+.status-dot-orange{background:var(--yellow);}
+
+/* UNIVERSE */
+.universe-card{
+  background:linear-gradient(135deg,#1c1c2e 0%,#2d1b4e 60%,#0d2010 100%);
+  border-radius:20px;padding:28px 32px;position:relative;overflow:hidden;
+}
+.universe-card::after{content:'B++';position:absolute;right:-10px;bottom:-20px;font-size:130px;font-weight:900;color:rgba(255,255,255,0.04);letter-spacing:-4px;pointer-events:none;line-height:1;}
+.universe-label{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(0,199,190,0.8);margin-bottom:6px;}
+.universe-title{font-size:24px;font-weight:800;letter-spacing:-0.5px;color:#fff;margin-bottom:6px;}
+.universe-sub{font-size:13px;color:rgba(255,255,255,0.6);line-height:1.6;max-width:480px;}
+.universe-pills{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap;}
+.universe-pill{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);padding:8px 12px;border-radius:10px;}
+.universe-pill img{width:26px;height:26px;border-radius:6px;object-fit:cover;}
+.universe-pill-name{font-size:12px;font-weight:700;color:#fff;}
+.universe-pill-status{font-size:10px;color:rgba(255,255,255,0.45);}
+
+/* HSCROLL */
+.hscroll-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+.hscroll-wrap::-webkit-scrollbar{display:none;}
+.hscroll{display:flex;gap:12px;padding:0 24px;width:max-content;}
+.hscroll-card{width:190px;background:var(--surface);border-radius:16px;border:1px solid var(--border);overflow:hidden;flex-shrink:0;transition:transform .2s,box-shadow .2s;}
+.hscroll-card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,0.08);}
+.hscroll-card-img{height:100px;display:flex;align-items:center;justify-content:center;}
+.hscroll-card-body{padding:10px 12px 14px;}
+.hscroll-card-name{font-size:14px;font-weight:700;color:var(--text);letter-spacing:-0.2px;}
+.hscroll-card-sub{font-size:11px;color:var(--text3);margin-top:2px;}
+.hscroll-card-desc{font-size:12px;color:var(--text2);margin-top:5px;line-height:1.45;}
+
+/* CLIENT */
+.client-card{background:var(--surface);border-radius:16px;border:1px solid var(--border);padding:20px;display:flex;align-items:flex-start;gap:14px;}
+.client-icon{width:56px;height:56px;border-radius:14px;flex-shrink:0;background:linear-gradient(135deg,#0057ff,#5856d6);display:flex;align-items:center;justify-content:center;font-size:24px;}
+.client-info{flex:1;}
+.client-tag{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--purple);margin-bottom:3px;}
+.client-name{font-size:17px;font-weight:700;color:var(--text);letter-spacing:-0.3px;margin-bottom:4px;}
+.client-desc{font-size:13px;color:var(--text2);line-height:1.55;}
+.client-chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px;}
+.chip{font-size:11px;font-weight:600;color:var(--text3);background:var(--bg);padding:4px 10px;border-radius:6px;border:1px solid var(--border);}
+
+/* CAPSTONE */
+.capstone-card{background:linear-gradient(135deg,#fff9e6,#fff3d6);border-radius:16px;border:1px solid #ffe58a;padding:20px;display:flex;align-items:center;gap:14px;}
+.capstone-icon{width:56px;height:56px;border-radius:12px;object-fit:cover;flex-shrink:0;box-shadow:0 3px 10px rgba(0,0,0,0.1);}
+.capstone-award{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#b8860b;margin-bottom:3px;}
+.capstone-name{font-size:17px;font-weight:700;color:var(--text);letter-spacing:-0.3px;margin-bottom:4px;}
+.capstone-desc{font-size:13px;color:var(--text2);line-height:1.55;}
+
+/* STACK */
+.stack-wrap{background:var(--surface);border-radius:16px;border:1px solid var(--border);padding:18px;}
+.stack-pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;}
+.stack-pill{display:flex;align-items:center;gap:6px;background:var(--bg);border:1px solid var(--border);padding:8px 13px;border-radius:10px;font-size:13px;font-weight:500;color:var(--text2);}
+.sdot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
+
+/* CONTACT */
+.contact-card{background:var(--surface);border-radius:20px;border:1px solid var(--border);padding:32px;text-align:center;}
+.contact-title{font-size:clamp(26px,4vw,40px);font-weight:800;letter-spacing:-1px;color:var(--text);margin-bottom:8px;}
+.contact-sub{font-size:15px;color:var(--text2);line-height:1.6;margin-bottom:24px;}
+.contact-links{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+.contact-link{display:flex;align-items:center;gap:7px;background:var(--bg);border:1px solid var(--border);color:var(--text);font-size:13px;font-weight:600;padding:11px 18px;border-radius:12px;text-decoration:none;transition:background .15s;}
+.contact-link:hover{background:#e8e8ed;}
+
+/* FOOTER */
+footer{border-top:1px solid var(--border);padding:20px 24px;margin-top:28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;background:var(--surface);}
+.footer-left{display:flex;align-items:center;gap:8px;}
+.footer-left img{height:20px;width:auto;object-fit:contain;opacity:0.5;}
+.footer-copy{font-size:12px;color:var(--text4);}
+
+.divider{height:1px;background:var(--border);margin:28px 24px 0;}
+
+@media(max-width:860px){
+  .featured-row{grid-template-columns:1fr;}
+  .hero-card-art{display:none;}
+  .photos-grid{grid-template-columns:1fr;}
+  .photo-card-wide{grid-column:auto;}
+}
+@media(max-width:560px){
+  nav{padding:0 16px;}
+  .hero-wrap,.section,.photos-wrap,.divider{padding-left:16px;padding-right:16px;}
+  .hscroll{padding:0 16px;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">
+    <img src="./bpp-wordmark.png" alt="B++"/>
+    <span class="nav-logo-name">B++</span>
+  </a>
+  <div class="nav-search">
+    <span class="nav-search-text">🔍 &nbsp;Apps, games, and more</span>
+  </div>
+  <div class="nav-right">
+    <a href="mailto:br4ndonmontford@gmail.com" class="nav-contact">Hire Me</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero-wrap">
+  <div class="hero-card">
+    <div class="hero-eyebrow">App Builder · Atlanta, GA · Available Now</div>
+    <div class="hero-title">Brandon<br>Montford.</div>
+    <div class="hero-sub">I build mobile apps end to end. iOS, React Native, from first screen to App Store.</div>
+    <div class="hero-actions">
+      <a href="#apps" class="hero-btn-white">See All Apps</a>
+      <a href="mailto:br4ndonmontford@gmail.com" class="hero-btn-outline">Get in Touch</a>
+    </div>
+    <div class="hero-card-art">
+      <img src="./scout.png" alt="Scout"/>
+      <img src="./fitgrade.png" alt="FitGrade"/>
+      <img src="./routerunner.png" alt="RouteRunner"/>
+    </div>
+  </div>
+</div>
+
+<!-- PHOTOS -->
+<div class="photos-wrap">
+  <div class="photos-label">In the Field</div>
+  <div class="photos-grid">
+    <div class="photo-card photo-card-wide">
+      <img src="./photo-capstone.png" alt="PacePal Capstone — IEEE Top 10"/>
+      <div class="photo-card-label">PacePal Capstone · IEEE Top 10 Nationally</div>
+    </div>
+    <div class="photo-card">
+      <img src="./photo-conference.png" alt="ACCA Symposium"/>
+      <div class="photo-card-label">ACCA Symposium Presentation</div>
+    </div>
+    <div class="photo-card" style="background:linear-gradient(135deg,#00857a,#005c54);display:flex;align-items:center;justify-content:center;">
+      <div style="text-align:center;padding:20px;">
+        <div style="font-size:40px;margin-bottom:8px;">📱</div>
+        <div style="color:#fff;font-size:14px;font-weight:700;">17 Apps Built</div>
+        <div style="color:rgba(255,255,255,0.7);font-size:12px;margin-top:4px;">6 Live on App Store</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- LIVE APPS FEATURED -->
+<div class="section" id="apps">
+  <div class="section-label">Live on the App Store</div>
+  <div class="featured-row">
+
+    <div class="app-featured">
+      <div class="app-featured-banner" style="background:linear-gradient(135deg,#1a0a00,#3d1f00);">
+        <img src="./scout.png" style="width:72px;height:72px;border-radius:16px;object-fit:cover;box-shadow:0 8px 24px rgba(0,0,0,0.4);"/>
+      </div>
+      <div class="app-featured-body">
+        <img src="./scout.png" alt="Scout" class="app-featured-icon"/>
+        <div class="app-featured-info">
+          <div class="app-featured-name">Scout</div>
+          <div class="app-featured-cat">Sports Memorabilia</div>
+          <div class="app-featured-desc">A premium sports memorabilia auction experience. Bid, haggle, and hunt for legendary signed pieces in real-time battle-style auctions with a full skill tree and career economy.</div>
+        </div>
+      </div>
+      <div class="app-featured-footer">
+        <span class="status"><span class="status-dot"></span>Live</span>
+        <a href="https://apps.apple.com/us/app/scout-sports-memorabilia/id6790982485" class="btn-get btn-get-teal" target="_blank">View</a>
+      </div>
+    </div>
+
+    <div class="app-featured">
+      <div class="app-featured-banner" style="background:linear-gradient(135deg,#0a1a4a,#1a3080);">
+        <img src="./voicebridge.png" style="width:72px;height:72px;border-radius:16px;object-fit:cover;box-shadow:0 8px 24px rgba(0,0,0,0.3);"/>
+      </div>
+      <div class="app-featured-body">
+        <img src="./voicebridge.png" alt="VoiceBridge" class="app-featured-icon"/>
+        <div class="app-featured-info">
+          <div class="app-featured-name">VoiceBridge</div>
+          <div class="app-featured-cat">Accessibility</div>
+          <div class="app-featured-desc">AAC communication app for individuals with Down syndrome and speech disabilities. Built for a family member. Multi-user profiles, scene boards, 18 accessibility features.</div>
+        </div>
+      </div>
+      <div class="app-featured-footer">
+        <span class="status"><span class="status-dot"></span>Live</span>
+        <a href="https://apps.apple.com/us/app/voicebridge/id6762594507" class="btn-get" target="_blank">View</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- APP LIST -->
+<div class="section" style="padding-top:16px;">
+  <div class="card-wrap">
+    <div class="app-row">
+      <img src="./routerunner.png" alt="RouteRunner" class="app-row-icon"/>
+      <div class="app-row-info">
+        <div class="app-row-name">RouteRunner</div>
+        <div class="app-row-cat">Sports Game · iOS</div>
+        <div class="app-row-desc">1v1 WR vs DB — draw your route, beat the coverage, hit the open window.</div>
+      </div>
+      <a href="https://apps.apple.com/us/app/routerunner/id6743690424" class="btn-get btn-get-green" target="_blank">View</a>
+    </div>
+    <div class="app-row">
+      <img src="./fitgrade.png" alt="FitGrade" class="app-row-icon"/>
+      <div class="app-row-info">
+        <div class="app-row-name">FitGrade</div>
+        <div class="app-row-cat">Fitness SaaS · iOS / React Native</div>
+        <div class="app-row-desc">B2B fitness platform with 3D body hologram grading and AI plan generation. Shipped in 7 days.</div>
+      </div>
+      <a href="https://apps.apple.com/us/app/fitgrade/id6771222221" class="btn-get" target="_blank">View</a>
+    </div>
+    <div class="app-row">
+      <img src="./scripturearcade.png" alt="Scripture Arcade" class="app-row-icon"/>
+      <div class="app-row-info">
+        <div class="app-row-name">Scripture Arcade</div>
+        <div class="app-row-cat">Games · iOS</div>
+        <div class="app-row-desc">Six Bible-themed arcade games in one app. Faith meets real game feel.</div>
+      </div>
+      <a href="https://apps.apple.com/us/app/parablearcade/id6785152043" class="btn-get btn-get-orange" target="_blank">View</a>
+    </div>
+    <div class="app-row" style="border-bottom:none;">
+      <img src="./devbook.png" alt="B++ DevBook" class="app-row-icon"/>
+      <div class="app-row-info">
+        <div class="app-row-name">B++ DevBook</div>
+        <div class="app-row-cat">Developer Tool · iOS</div>
+        <div class="app-row-desc">Private developer notebook — track every B++ project from your phone.</div>
+      </div>
+      <a href="https://apps.apple.com/us/app/b-devbook/id6779038531" class="btn-get btn-get-teal" target="_blank">View</a>
+    </div>
+  </div>
+</div>
+
+<!-- UNIVERSE -->
+<div class="section">
+  <div class="section-label">The B++ Universe</div>
+  <div class="universe-card">
+    <div class="universe-label">⬡ Football Universe</div>
+    <div class="universe-title">Three Positions. One World.</div>
+    <div class="universe-sub">RouteRunner, LaneCutter, and TrenchWork — three interconnected football games each built around a different position group. Shared teams, escalating depth, one universe.</div>
+    <div class="universe-pills">
+      <div class="universe-pill">
+        <img src="./routerunner.png" alt="RouteRunner"/>
+        <div><div class="universe-pill-name">RouteRunner</div><div class="universe-pill-status">Wide Receiver · Live</div></div>
+      </div>
+      <div class="universe-pill">
+        <img src="./lanecutter.png" alt="LaneCutter"/>
+        <div><div class="universe-pill-name">LaneCutter</div><div class="universe-pill-status">Running Back · In Dev</div></div>
+      </div>
+      <div class="universe-pill">
+        <div style="width:26px;height:26px;border-radius:6px;background:rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;font-size:13px;">🏈</div>
+        <div><div class="universe-pill-name">TrenchWork</div><div class="universe-pill-status">OL / DL · In Dev</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- IN DEV -->
+<div class="section" style="padding-left:0;padding-right:0;">
+  <div class="section-label" style="padding:0 24px;">In Development</div>
+  <div class="hscroll-wrap">
+    <div class="hscroll">
+      <div class="hscroll-card">
+        <div class="hscroll-card-img" style="background:linear-gradient(135deg,#0d1f00,#1a3d00);">
+          <img src="./lanecutter.png" style="width:64px;height:64px;border-radius:14px;object-fit:cover;box-shadow:0 6px 16px rgba(0,0,0,0.4);"/>
+        </div>
+        <div class="hscroll-card-body">
+          <div class="hscroll-card-name">LaneCutter</div>
+          <div class="hscroll-card-sub">Sports Game · iOS</div>
+          <div class="hscroll-card-desc">Draw your lane, place blockers, juke through defenders.</div>
+        </div>
+      </div>
+      <div class="hscroll-card">
+        <div class="hscroll-card-img" style="background:linear-gradient(135deg,#0a0a1e,#1a1a3d);display:flex;align-items:center;justify-content:center;">
+          <div style="font-size:36px;">🏈</div>
+        </div>
+        <div class="hscroll-card-body">
+          <div class="hscroll-card-name">TrenchWork</div>
+          <div class="hscroll-card-sub">Sports Game · iOS</div>
+          <div class="hscroll-card-desc">OL vs DL — timing meters, tap sequences, full draw on defense.</div>
+        </div>
+      </div>
+      <div class="hscroll-card">
+        <div class="hscroll-card-img" style="background:linear-gradient(135deg,#1a001a,#3d0050);">
+          <img src="./nina.png" style="width:64px;height:64px;border-radius:14px;object-fit:cover;box-shadow:0 6px 16px rgba(0,0,0,0.4);"/>
+        </div>
+        <div class="hscroll-card-body">
+          <div class="hscroll-card-name">NINA</div>
+          <div class="hscroll-card-sub">Finance · iOS</div>
+          <div class="hscroll-card-desc">Voice-first, personal stock intelligence. AI-powered financial education.</div>
+        </div>
+      </div>
+      <div class="hscroll-card">
+        <div class="hscroll-card-img" style="background:linear-gradient(135deg,#0a001f,#1a0040);">
+          <img src="./sam.png" style="width:64px;height:64px;border-radius:14px;object-fit:cover;box-shadow:0 6px 16px rgba(0,0,0,0.4);"/>
+        </div>
+        <div class="hscroll-card-body">
+          <div class="hscroll-card-name">SAM</div>
+          <div class="hscroll-card-sub">Finance · iOS</div>
+          <div class="hscroll-card-desc">Numbers-heavy stock assistant. Live Yahoo Finance data and conversation memory.</div>
+        </div>
+      </div>
+      <div class="hscroll-card">
+        <div class="hscroll-card-img" style="background:linear-gradient(135deg,#000,#1a1a1a);">
+          <img src="./musilite.png" style="width:64px;height:64px;border-radius:14px;object-fit:cover;box-shadow:0 6px 16px rgba(0,0,0,0.4);"/>
+        </div>
+        <div class="hscroll-card-body">
+          <div class="hscroll-card-name">MusiLite</div>
+          <div class="hscroll-card-sub">Music · iOS</div>
+          <div class="hscroll-card-desc">A lightweight music player with classic iPod-era taste.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- CLIENT WORK -->
+<div class="section">
+  <div class="section-label">Client Work</div>
+  <div class="client-card">
+    <div class="client-icon">⚾</div>
+    <div class="client-info">
+      <div class="client-tag">Nonprofit · Atlanta, GA</div>
+      <div class="client-name">Miracle League of South Fulton</div>
+      <div class="client-desc">Full mobile app and complete website for an adaptive baseball nonprofit. Registration with emergency contact flow, buddy system with SOS modal, photo gallery, schedule, and sponsor section.</div>
+      <div class="client-chips">
+        <span class="chip">iOS App</span>
+        <span class="chip">React Native</span>
+        <span class="chip">Website</span>
+        <span class="chip">Registration System</span>
+        <span class="chip">SOS Flow</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CAPSTONE -->
+<div class="section" style="padding-top:12px;">
+  <div class="capstone-card">
+    <img src="./pacepal.png" alt="PacePal" class="capstone-icon"/>
+    <div>
+      <div class="capstone-award">🏆 IEEE Top 10 Nationally · Best Capstone Award</div>
+      <div class="capstone-name">PacePal</div>
+      <div class="capstone-desc">Cross-platform health monitoring. Heart rate, steps, nutrition, sleep, and WalkMate emergency safety for elderly users. Top 10 nationally at IEEE.</div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- STACK -->
+<div class="section">
+  <div class="section-label">Stack</div>
+  <div class="stack-wrap">
+    <div style="font-size:13px;color:var(--text3);">What every B++ product is built with.</div>
+    <div class="stack-pills">
+      <div class="stack-pill"><span class="sdot" style="background:#007aff;"></span>SwiftUI</div>
+      <div class="stack-pill"><span class="sdot" style="background:#00c7be;"></span>React Native</div>
+      <div class="stack-pill"><span class="sdot" style="background:#ff6b00;"></span>Expo / EAS</div>
+      <div class="stack-pill"><span class="sdot" style="background:#ffcc00;"></span>Firebase</div>
+      <div class="stack-pill"><span class="sdot" style="background:#34c759;"></span>Supabase</div>
+      <div class="stack-pill"><span class="sdot" style="background:#5856d6;"></span>Claude API</div>
+      <div class="stack-pill"><span class="sdot" style="background:#ff375f;"></span>CoreHaptics</div>
+      <div class="stack-pill"><span class="sdot" style="background:#64d2ff;"></span>SceneKit</div>
+      <div class="stack-pill"><span class="sdot" style="background:#ff9500;"></span>AWS · CCP</div>
+      <div class="stack-pill"><span class="sdot" style="background:#30d158;"></span>SFSpeechRecognizer</div>
+      <div class="stack-pill"><span class="sdot" style="background:#007aff;"></span>TypeScript</div>
+      <div class="stack-pill"><span class="sdot" style="background:#ff9500;"></span>Three.js</div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div class="section" style="padding-bottom:32px;">
+  <div class="contact-card">
+    <div class="contact-title">Let's build something.</div>
+    <div class="contact-sub">Open to roles at product studios and app shops. Available for client work.<br>iOS · React Native · Full product lifecycle.</div>
+    <div class="contact-links">
+      <a href="mailto:br4ndonmontford@gmail.com" class="contact-link">✉️ Email</a>
+      <a href="https://linkedin.com/in/brandon-montford-533790308" class="contact-link" target="_blank">💼 LinkedIn</a>
+      <a href="https://github.com/BrandonMontford-1" class="contact-link" target="_blank">⌥ GitHub</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-left">
+    <img src="./bpp-wordmark.png" alt="B++"/>
+    <span style="font-size:13px;font-weight:600;color:var(--text3);">B++ · Brandon Montford · Atlanta, GA</span>
+  </div>
+  <div class="footer-copy">© 2026 · Built different.</div>
+</footer>
+
+</body>
+</html>
